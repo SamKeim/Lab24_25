@@ -1,4 +1,4 @@
-package co.grandcircus.Lab24_25;
+package co.grandcircus.Lab24_25.entities;
 
 public class User {
 

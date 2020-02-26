@@ -1,9 +1,11 @@
-package co.grandcircus.Lab24_25;
+package co.grandcircus.Lab24_25.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import co.grandcircus.Lab24_25.entities.User;
 
 @Repository
 public class UserDao {
