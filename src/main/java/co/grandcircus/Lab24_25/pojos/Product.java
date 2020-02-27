@@ -1,4 +1,4 @@
-package co.grandcircus.Lab24_25.entities;
+package co.grandcircus.Lab24_25.pojos;
 
 public class Product {
 
@@ -6,20 +6,18 @@ public class Product {
 	private String category;
 	private String name;
 	private String description;
-	private Long quantity;
 	private Double price;
 	
 	public Product() {
 		
 	}
 	
-	public Product(Long id, String category, String name, String description, Long quantity, Double price) {
+	public Product(Long id, String category, String name, String description, Double price) {
 		super();
 		this.id = id;
 		this.category = category;
 		this.name = name;
 		this.description = description;
-		this.quantity = quantity;
 		this.price = price;
 	}
 
@@ -53,14 +51,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Long getQuantity() {
-		return quantity;
-	}
-	
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
 	}
 	
 	public Double getPrice() {

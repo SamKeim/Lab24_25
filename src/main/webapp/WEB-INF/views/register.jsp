@@ -9,11 +9,11 @@
 	rel="stylesheet"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+	<%@ include file="partials/header.jsp" %>
 <title>Register || A Latte Fun</title>
 </head>
 <body>
 <div class="container">
-	<h1>Welcome to A Latte Fun</h1>
 	<h2>Registration</h2>
 
 	<form action="/register" method="post">

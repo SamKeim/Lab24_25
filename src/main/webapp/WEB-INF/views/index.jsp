@@ -9,24 +9,31 @@
 	rel="stylesheet"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="/temp.css" />
 
 <title>Home || A Latte Fun</title>
 </head>
 <body>
-	<nav
-		class="border-bottom border-muted navbar fixed-top navbar-expand-lg navbar-light bg-info">
-		<a class="navbar-brand" href="#">Home || A Latte Fun</a>
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-			<li class="nav-item active"><a href="/menu" class="nav-link">Menu</a></li>
-			<li class="nav-item active"><a href="/register" class="nav-link">Register</a></li>
-			<li class="nav-item active"><a href="/admin/" class="nav-link">Admin</a></li>
-		</ul>
-	</nav>
-
+	<%@ include file="partials/header.jsp"%>
 	<div class="container">
-		<h1>Welcome to A Latte Fun</h1>
 		<h2>We're glad to have you here!</h2>
+		<h2>We have three locations across Southeast Michigan to better
+			serve you.</h2>
+
+		<div class="row">
+			<article class="col text-center">
+				<img class="bg-cover" src="/Ann Arbor.jfif">
+				<h3>Ann Arbor</h3>
+			</article>
+			<article class="col text-center">
+				<img class="bg-cover" src="/DIA.jpg">
+				<h3>Detroit Institute of Arts</h3>
+			</article>
+			<article class="col text-center">
+				<img class="bg-cover" src="/ypsilanti.jpeg">
+				<h3>Ypsilanti</h3>
+			</article>
+		</div>
 	</div>
 </body>
 </html>

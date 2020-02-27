@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,8 +18,8 @@
 <title>ADMIN CHANGE ITEM || A Latte Fun</title>
 </head>
 <body>
+	<%@ include file="partials/header.jsp" %>
 	<div class="container">
-		<h1>A Latte Fun</h1>
 		<h2>${title} Item</h2>
 		<div class="form-group">
 			<form method="post" action="/admin/checking">
@@ -48,14 +49,12 @@
 					id="price" name="price" value="${price}" required step="0.01"
 					autocomplete="off">
 				<input type="submit" class="btn btn-primary" name="Submit" />
-				<!--  <button type="button" class="btn btn-primary" name="DELETE"
-					onclick="return confirm('Are you sure you want to delete this item?');">Delete</button> -->
+				<c:if test="${product.id != null}">
+				<a href="/admin/delete?id=${product.id}" type="btn btn-danger" class="btn btn-primary" name="DELETE"
+					onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+					</c:if>
 			</form>
 		</div>
-		<p>
-			<input type="button" class="btn btn-primary"
-				onclick="window.location.href = '/admin/';" value="Admin Home Page" />
-		</p>
 	</div>
 </body>
 </html>

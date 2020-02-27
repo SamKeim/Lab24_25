@@ -1,0 +1,8 @@
+@charset "ISO-8859-1";
+
+.bg-cover {
+  width: 350px;
+
+  background-size: cover;
+  border: 3px solid black;
+}

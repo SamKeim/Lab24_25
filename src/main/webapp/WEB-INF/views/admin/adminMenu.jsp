@@ -17,11 +17,13 @@
 <title>ADMIN MENU || A Latte Fun</title>
 </head>
 <body>
+	<%@ include file="partials/header.jsp"%>
 	<div class="container">
 		<h1>A Latte Fun</h1>
 		<h2>Admin Menu Items</h2>
 		<table class="table">
 			<tr>
+				<th>Category</th>
 				<th>Name</th>
 				<th>Description</th>
 				<th>Price</th>
@@ -29,40 +31,18 @@
 				<th></th>
 			</tr>
 			<c:forEach var="menuItem" items="${menu}">
-				<c:if test="${menuItem.quantity == null}">
-					<tr>
-						<td>${menuItem.name}</td>
-						<td>${menuItem.description}</td>
-						<td><fmt:formatNumber value="${menuItem.price}"
-								type="currency" /></td>
-						<td><input type="button" class="btn btn-primary"
-			onclick="window.location.href = '/admin/form?id=${menuItem.id}';" value="Edit/Delete" />
-					</tr>
-				</c:if>
+				<tr>
+				<td>${menuItem.category}</td>
+					<td>${menuItem.name}</td>
+					<td>${menuItem.description}</td>
+					<td><fmt:formatNumber value="${menuItem.price}"
+							type="currency" /></td>
+					<td><input type="button" class="btn btn-primary"
+						onclick="window.location.href = '/admin/edit?id=${menuItem.id}';"
+						value="Edit" />
+				</tr>
 			</c:forEach>
 		</table>
-		<h2>Products Available Online</h2>
-		<table class="table">
-			<tr>
-				<td>Name</td>
-				<td>Description</td>
-				<td>Price</td>
-			</tr>
-			<c:forEach var="product" items="${menu}">
-				<c:if
-					test="${(product.quantity >= '1') && (product.quantity != 'null') }">
-					<tr>
-						<td>${product.name}</td>
-						<td>${product.description }</td>
-						<td>${product.price }</td>
-					</tr>
-				</c:if>
-			</c:forEach>
-		</table>
-		<p>
-			<input type="button" class="btn btn-primary" onclick="window.location.href = '/admin/create';" value="Add Item" />
-			<input type="button" class="btn btn-primary" onclick="window.location.href = '/';" value="Home Page" />
-		</p>
 	</div>
 </body>
 </html>

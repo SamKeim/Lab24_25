@@ -2,22 +2,18 @@ package co.grandcircus.Lab24_25;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.Lab24_25.dao.ProductDao;
 import co.grandcircus.Lab24_25.dao.UserDao;
-import co.grandcircus.Lab24_25.entities.Product;
-import co.grandcircus.Lab24_25.entities.User;
+import co.grandcircus.Lab24_25.pojos.Product;
 
 @Controller
-public class CoffeeShopController {
+public class AdminController {
 
 	@Autowired
 	UserDao uDao;
@@ -27,54 +23,27 @@ public class CoffeeShopController {
 	
 	@Autowired
 	Methods m;
-
-	@PostConstruct
-	public void testIt() {
-		System.out.println("------------ TESTING START ------------");
-		Methods m = new Methods();
-		
-		System.out.println(pDao.findNames());
-		System.out.println(m.checkIfNameExists("espresso"));
-//		System.out.println(m.checkIfNameExists("test"));
-	}
 	
-	@RequestMapping("/menu")
-	public ModelAndView showMenu() {
-		List<Product> leProductList = pDao.findAll();
-		return new ModelAndView("products", "menu", leProductList);
-	}
-
-	@RequestMapping("/register")
-	public ModelAndView showRegisterForm() {
-		return new ModelAndView("register");
-	}
-
-	@PostMapping("/register")
-	public ModelAndView register(User newUser) {
-		uDao.addUser(newUser);
-		return new ModelAndView("confirmation", "user", newUser);
-	}
-
-	@RequestMapping("/admin/create")
-	public ModelAndView showForm() {
-		List<String> categories = pDao.findCategories();
-		ModelAndView mav = new ModelAndView("admin/adminItemForm");
-		mav.addObject("title", "Add");
-		mav.addObject("categories", categories);
-		return mav;
-	}
-
 	@RequestMapping("/admin/")
 	public ModelAndView adminHome() {
 		List<Product> leProductList = pDao.findAll();
 		return new ModelAndView("admin/adminMenu", "menu", leProductList);
 	}
+	
+	@RequestMapping("/admin/add")
+	public ModelAndView addForm() {
+		List<String> categories = pDao.findCategories();
+		ModelAndView mav = new ModelAndView("admin/adminAddItemForm");
+		mav.addObject("categories", categories);
+		mav.addObject("title", "Edit");
+		return mav;
+	}
 
-	@RequestMapping("/admin/form")
+	@RequestMapping("/admin/edit")
 	public ModelAndView editForm(@RequestParam("id") Long id) {
 		Product product = pDao.findById(id);
 		List<String> categories = pDao.findCategories();
-		ModelAndView mav = new ModelAndView("admin/adminItemForm");
+		ModelAndView mav = new ModelAndView("admin/adminAddItemForm");
 		mav.addObject("product", product);
 		mav.addObject("categories", categories);
 		mav.addObject("title", "Edit");
@@ -87,7 +56,7 @@ public class CoffeeShopController {
 			@RequestParam("price") Double price) {
 		
 		String mavName = "";
-		Product item = new Product(id, category, name, description, null, price);
+		Product item = new Product(id, category, name, description, price);
 		if (id == null) {
 			Boolean nameExists = m.checkIfNameExists(name);
 			if (nameExists) {
@@ -103,7 +72,20 @@ public class CoffeeShopController {
 		}
 		return new ModelAndView(mavName);
 	}
-
+	
+	@RequestMapping("/admin/itemerror")
+	public ModelAndView error() {
+		String msg = "Item Already Exists";
+		return new ModelAndView("admin/adminError");
+	}
+	
+	
+	@RequestMapping("/admin/delete")
+	public ModelAndView delete(@RequestParam(name="id", required=false) Long id) {
+		pDao.delete(id);
+		return new ModelAndView("redirect:/admin/");		
+	}
+	
 	@RequestMapping("/admin/confirm")
 	public ModelAndView confirmChanges(@RequestParam("id") Long id){
 		Product item = pDao.findById(id);

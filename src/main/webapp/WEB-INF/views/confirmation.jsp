@@ -12,8 +12,8 @@
 <title>Confirmation || A Latte Fun</title>
 </head>
 <body>
+<%@ include file="partials/header.jsp" %>
 <div class="container">
-<h1>A Latte Fun</h1>
 <h2>Thank you for registering, ${user.firstName}.</h2>
 <p><ul>
 <li>Name: ${user.firstName} ${user.lastName}</li>

@@ -15,8 +15,8 @@
 <title>Menu || A Latte Fun</title>
 </head>
 <body>
+<%@ include file="partials/header.jsp" %>
 	<div class="container">
-		<h1>A Latte Fun</h1>
 		<h2>Menu Items</h2>
 		<table class="table">
 			<tr>
@@ -25,32 +25,12 @@
 				<th>Price</th>
 			</tr>
 			<c:forEach var="menuItem" items="${menu}">
-				<c:if test="${menuItem.quantity == null}">
 					<tr>
 						<td>${menuItem.name}</td>
 						<td>${menuItem.description}</td>
 						<td>${menuItem.price}</td>
 					</tr>
-				</c:if>
-			</c:forEach>
-		</table>
-		<h2>Products Available Online</h2>
-		<table class="table">
-			<tr>
-				<td>Name</td>
-				<td>Description</td>
-				<td>Price</td>
-			</tr>
-			<c:forEach var="product" items="${menu}">
-				<c:if
-					test="${(product.quantity >= '1') && (product.quantity != 'null') }">
-					<tr>
-						<td>${product.name}</td>
-						<td>${product.description }</td>
-						<td>${product.price }</td>
-					</tr>
-				</c:if>
-			</c:forEach>
+				</c:forEach>
 		</table>
 		<p>
 			<a href="/">Home Page</a>

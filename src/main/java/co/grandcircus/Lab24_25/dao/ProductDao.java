@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import co.grandcircus.Lab24_25.entities.Product;
+import co.grandcircus.Lab24_25.pojos.Product;
 
 @Repository
 public class ProductDao {
@@ -15,8 +15,8 @@ public class ProductDao {
 	private JdbcTemplate jdbc;
 
 	public void addProduct(Product product) {
-		String sql = "INSERT INTO products (name, category, description, quantity, price) VALUES (?, ?, ?, ?, ?);";
-		jdbc.update(sql, product.getName(), product.getCategory(), product.getDescription(), product.getQuantity(),
+		String sql = "INSERT INTO products (name, category, description, price) VALUES (?, ?, ?, ?);";
+		jdbc.update(sql, product.getName(), product.getCategory(), product.getDescription(),
 				product.getPrice());
 	}
 
@@ -26,8 +26,8 @@ public class ProductDao {
 	}
 
 	public void update(Product product) {
-		String sql = "UPDATE products SET category=?, name=?, description=?, quantity=?, price=? WHERE id=?";
-		jdbc.update(sql, product.getCategory(), product.getName(), product.getDescription(), product.getQuantity(),
+		String sql = "UPDATE products SET category=?, name=?, description=?, price=? WHERE id=?";
+		jdbc.update(sql, product.getCategory(), product.getName(), product.getDescription(),
 				product.getPrice(), product.getId());
 	}
 

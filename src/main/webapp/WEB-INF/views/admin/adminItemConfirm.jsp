@@ -13,18 +13,15 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<%@ include file="partials/header.jsp" %>
 	<h1>A Latte Fun</h1>
-	<h2>${title}Confirmed</h2>
+	<h2>${title} Confirmed</h2>
 	<p>Category: ${item.category}</p>
 	<p>Name: ${item.name}</p>
 	<p>Description: ${item.description}</p>
 	<p>
 		Price:
 		<fmt:formatNumber value="${item.price}" type="currency" />
-	</p>
-	<p>
-		<input type="button" class="btn btn-primary"
-			onclick="window.location.href = '/admin/';" value="Admin Home Page" />
 	</p>
 </body>
 </html>
